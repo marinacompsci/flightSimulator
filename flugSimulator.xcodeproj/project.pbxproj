@@ -1,0 +1,376 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F1610D942593CB75009CA37B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1610D932593CB75009CA37B /* AppDelegate.swift */; };
+		F1610D962593CB75009CA37B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1610D952593CB75009CA37B /* SceneDelegate.swift */; };
+		F1610D982593CB75009CA37B /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1610D972593CB75009CA37B /* GameVC.swift */; };
+		F1610D9D2593CB79009CA37B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1610D9C2593CB79009CA37B /* Assets.xcassets */; };
+		F1610DA02593CB79009CA37B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1610D9E2593CB79009CA37B /* LaunchScreen.storyboard */; };
+		F1610DB62593E1AA009CA37B /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1610DB52593E1AA009CA37B /* Cloud.swift */; };
+		F1610DBA2593E1B3009CA37B /* Airplane.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1610DB92593E1B3009CA37B /* Airplane.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F1610D902593CB75009CA37B /* flugSimulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flugSimulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1610D932593CB75009CA37B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F1610D952593CB75009CA37B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F1610D972593CB75009CA37B /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
+		F1610D9C2593CB79009CA37B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F1610D9F2593CB79009CA37B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F1610DA12593CB79009CA37B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1610DB52593E1AA009CA37B /* Cloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
+		F1610DB92593E1B3009CA37B /* Airplane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airplane.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F1610D8D2593CB75009CA37B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F1610D872593CB75009CA37B = {
+			isa = PBXGroup;
+			children = (
+				F1610D922593CB75009CA37B /* flugSimulator */,
+				F1610D912593CB75009CA37B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F1610D912593CB75009CA37B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F1610D902593CB75009CA37B /* flugSimulator.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F1610D922593CB75009CA37B /* flugSimulator */ = {
+			isa = PBXGroup;
+			children = (
+				F1610DB42593E199009CA37B /* Model */,
+				F1610DAD2593CBF6009CA37B /* View Controllers */,
+				F1610DAC2593CBEE009CA37B /* Custom Views */,
+				F1610DAB2593CBCA009CA37B /* Supporting Files */,
+			);
+			path = flugSimulator;
+			sourceTree = "<group>";
+		};
+		F1610DAB2593CBCA009CA37B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F1610D9C2593CB79009CA37B /* Assets.xcassets */,
+				F1610DA12593CB79009CA37B /* Info.plist */,
+				F1610D9E2593CB79009CA37B /* LaunchScreen.storyboard */,
+				F1610D932593CB75009CA37B /* AppDelegate.swift */,
+				F1610D952593CB75009CA37B /* SceneDelegate.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F1610DAC2593CBEE009CA37B /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		F1610DAD2593CBF6009CA37B /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F1610D972593CB75009CA37B /* GameVC.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		F1610DB42593E199009CA37B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F1610DB52593E1AA009CA37B /* Cloud.swift */,
+				F1610DB92593E1B3009CA37B /* Airplane.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F1610D8F2593CB75009CA37B /* flugSimulator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1610DA42593CB79009CA37B /* Build configuration list for PBXNativeTarget "flugSimulator" */;
+			buildPhases = (
+				F1610D8C2593CB75009CA37B /* Sources */,
+				F1610D8D2593CB75009CA37B /* Frameworks */,
+				F1610D8E2593CB75009CA37B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = flugSimulator;
+			productName = flugSimulator;
+			productReference = F1610D902593CB75009CA37B /* flugSimulator.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F1610D882593CB75009CA37B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					F1610D8F2593CB75009CA37B = {
+						CreatedOnToolsVersion = 12.3;
+					};
+				};
+			};
+			buildConfigurationList = F1610D8B2593CB75009CA37B /* Build configuration list for PBXProject "flugSimulator" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F1610D872593CB75009CA37B;
+			productRefGroup = F1610D912593CB75009CA37B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F1610D8F2593CB75009CA37B /* flugSimulator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F1610D8E2593CB75009CA37B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1610DA02593CB79009CA37B /* LaunchScreen.storyboard in Resources */,
+				F1610D9D2593CB79009CA37B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F1610D8C2593CB75009CA37B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1610D982593CB75009CA37B /* GameVC.swift in Sources */,
+				F1610DB62593E1AA009CA37B /* Cloud.swift in Sources */,
+				F1610D942593CB75009CA37B /* AppDelegate.swift in Sources */,
+				F1610DBA2593E1B3009CA37B /* Airplane.swift in Sources */,
+				F1610D962593CB75009CA37B /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F1610D9E2593CB79009CA37B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1610D9F2593CB79009CA37B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F1610DA22593CB79009CA37B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F1610DA32593CB79009CA37B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F1610DA52593CB79009CA37B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L68H6X9MR3;
+				INFOPLIST_FILE = "flugSimulator/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mbsa.flugSimulator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F1610DA62593CB79009CA37B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L68H6X9MR3;
+				INFOPLIST_FILE = "flugSimulator/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mbsa.flugSimulator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F1610D8B2593CB75009CA37B /* Build configuration list for PBXProject "flugSimulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1610DA22593CB79009CA37B /* Debug */,
+				F1610DA32593CB79009CA37B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1610DA42593CB79009CA37B /* Build configuration list for PBXNativeTarget "flugSimulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1610DA52593CB79009CA37B /* Debug */,
+				F1610DA62593CB79009CA37B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F1610D882593CB75009CA37B /* Project object */;
+}
