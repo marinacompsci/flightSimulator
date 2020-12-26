@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Airplane {
+class Airplane {
     /*
      Km per Seconds
      */
@@ -19,11 +19,15 @@ struct Airplane {
     let flightDuration: Double = 2 * 60
     
     /*
-     Speed < 235 -> crash
+     Speed < 235km / 3600s -> crash
      */
-    let stallSpeed: Double = 235
+    let stallSpeed: Double = 235 / 3600
     
     var image: UIImageView!
+    
+    func reduceSpeed(byAmount amount: Double) {
+        speed = speed * amount
+    }
     
     init(image: UIImageView) {
         self.image = image

@@ -13,12 +13,8 @@ struct Cloud {
     var image: UIImageView!
     
     func reduceAirplaneSpeed(airplane: Airplane) {
-        print("GOT HIT")
-        var airplane = airplane
-        airplane.speed *= (1-speedReduction)
-        
+        airplane.reduceSpeed(byAmount: (1-speedReduction))
         if (airplane.speed <= airplane.stallSpeed) {
-            print("game over")
             // lose game
         }
     }
