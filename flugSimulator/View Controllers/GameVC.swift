@@ -177,25 +177,25 @@ class GameVC: UIViewController {
         moveAirplane(toDirection: .left, byAmount: 20)
     }
     
-    
     private func moveAirplane(toDirection direction: Direction, byAmount amount: Double) {
         switch direction {
             case .left:
                 UIView.animate(withDuration: 0.1, animations: {
                     [weak self] in
+                    guard self!.airplane.image.frame.minX - CGFloat(amount) >= 0 else { return }
                     self?.airplaneXShift -= CGFloat(amount)
                     self?.airplane.image.transform = CGAffineTransform(translationX: self!.airplaneXShift, y: 0)
                 })
             case .right:
                 UIView.animate(withDuration: 0.1, animations: {
                     [weak self] in
+                    guard self!.airplane.image.frame.maxX + CGFloat(amount) <= self!.view.bounds.width else { return }
                     self?.airplaneXShift += CGFloat(amount)
                     self?.airplane.image.transform = CGAffineTransform(translationX: self!.airplaneXShift, y: 0)
                 })
         }
     }
     
-    //TODO: AIRPLANE CANNOT DISAPPEAR FROM SCREEN
     //TODO: CLOUD TOUCHES AIRPLANE -> SCREEN GOES RED
 }
 
