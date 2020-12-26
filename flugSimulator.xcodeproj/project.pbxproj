@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F1547C4C25978DD2007C5891 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1547C4B25978DD2007C5891 /* Direction.swift */; };
 		F1610D942593CB75009CA37B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1610D932593CB75009CA37B /* AppDelegate.swift */; };
 		F1610D962593CB75009CA37B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1610D952593CB75009CA37B /* SceneDelegate.swift */; };
 		F1610D982593CB75009CA37B /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1610D972593CB75009CA37B /* GameVC.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F1547C4B25978DD2007C5891 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		F1610D902593CB75009CA37B /* flugSimulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flugSimulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1610D932593CB75009CA37B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1610D952593CB75009CA37B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F1547C4A25978DC4007C5891 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				F1547C4B25978DD2007C5891 /* Direction.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		F1610D872593CB75009CA37B = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +68,7 @@
 		F1610D922593CB75009CA37B /* flugSimulator */ = {
 			isa = PBXGroup;
 			children = (
+				F1547C4A25978DC4007C5891 /* Enums */,
 				F1610DB42593E199009CA37B /* Model */,
 				F1610DAD2593CBF6009CA37B /* View Controllers */,
 				F1610DAC2593CBEE009CA37B /* Custom Views */,
@@ -176,6 +187,7 @@
 				F1610D942593CB75009CA37B /* AppDelegate.swift in Sources */,
 				F1610DBA2593E1B3009CA37B /* Airplane.swift in Sources */,
 				F1610D962593CB75009CA37B /* SceneDelegate.swift in Sources */,
+				F1547C4C25978DD2007C5891 /* Direction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
