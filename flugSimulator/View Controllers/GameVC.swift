@@ -101,14 +101,16 @@ class GameVC: UIViewController {
         rightArrow.tintColor = .black
         rightArrow.setBackgroundImage(UIImage(systemName: "chevron.right.circle.fill"), for: .normal)
         rightArrow.addTarget(self, action: #selector(moveAirplaneToRight), for: .touchUpInside)
+        rightArrow.addTarget(self, action: #selector(pushAirplaneToRight), for: .touchDownRepeat)
         
         leftArrow.tintColor = .black
         leftArrow.setBackgroundImage(UIImage(systemName: "chevron.left.circle.fill"), for: .normal)
         leftArrow.addTarget(self, action: #selector(moveAirplaneToLeft), for: .touchUpInside)
+        leftArrow.addTarget(self, action: #selector(pushAirplaneToLeft), for: .touchUpInside)
+
         
         rightArrow.translatesAutoresizingMaskIntoConstraints = false
         leftArrow.translatesAutoresizingMaskIntoConstraints = false
-        
         
         NSLayoutConstraint.activate([
             leftArrow.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
@@ -149,13 +151,11 @@ class GameVC: UIViewController {
         })
     }
 
-    
     private func checkTouch(cloudPosition: CGRect) {
         if cloudPosition.intersects(airplane.image.frame) {
             cloud.reduceAirplaneSpeed(airplane: airplane)
         }
     }
-
 
     @objc
     private func moveAirplaneToRight() {
@@ -167,6 +167,15 @@ class GameVC: UIViewController {
     }
     
     @objc
+    private func pushAirplaneToRight() {
+        UIView.animate(withDuration: 0.1, animations: {
+            [weak self] in
+            self?.airplaneXShift += 20.0
+            self?.airplane.image.transform = CGAffineTransform(translationX: self!.airplaneXShift, y: 0)
+        })
+    }
+ 
+    @objc
     private func moveAirplaneToLeft() {
         UIView.animate(withDuration: 0.1, animations: {
             [weak self] in
@@ -175,6 +184,15 @@ class GameVC: UIViewController {
         })
     }
     
-    //TODO: HOLD BUTTON -> MOVE AIRPLANE FASTER
+    @objc
+    private func pushAirplaneToLeft() {
+        UIView.animate(withDuration: 0.1, animations: {
+            [weak self] in
+            self?.airplaneXShift -= 20.0
+            self?.airplane.image.transform = CGAffineTransform(translationX: self!.airplaneXShift, y: 0)
+        })
+    }
+    
+    //TODO: AIRPLANE CANNOT DISAPPEAR FROM SCREEN
 }
 
