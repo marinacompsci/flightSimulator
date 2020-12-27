@@ -9,7 +9,7 @@ import UIKit
 
 class GameVC: UIViewController {
     
-    let airplane = Airplane(image: UIImageView(image: UIImage(named: "airplane")))
+    var airplane = Airplane(image: UIImageView(image: UIImage(named: "airplane")))
     var cloud = Cloud(image: UIImageView(image: UIImage(named: "cloud")))
     
     let rightArrow = UIButton()
@@ -18,24 +18,29 @@ class GameVC: UIViewController {
     
     let timeLabel = UILabel()
     let distanceLabel = UILabel()
+    let gearButton = UIButton()
     var distanceTravelled = 0.0
     var timerDuration = 0
+    let hitLabel = UILabel()
     
-    let gameOver = false
+    var gameOver = false
     var airplaneXShift = CGFloat(0)
-    var starTopConstraint: NSLayoutConstraint!
-    var starCenterXConstraint: NSLayoutConstraint!
+    var cloudTopConstraint: NSLayoutConstraint!
+    var cloudCenterXConstraint: NSLayoutConstraint!
     let cloudPositions = [-100, -80, -50, -30, -10, 10, 30, 50, 80, 100]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupBackground()
+        setupGearButton()
+        setupHitlabel()
         setupLabels()
         setupClouds()
         setupControlButtons()
         setupAirplane()
-        gameEngine()
+        showCounter()
     }
     
     private func setupBackground() {
@@ -52,26 +57,58 @@ class GameVC: UIViewController {
         ])
     }
     
+    private func setupGearButton() {
+        view.addSubview(gearButton)
+        gearButton.setBackgroundImage(UIImage(systemName: "gear"), for: .normal)
+        gearButton.translatesAutoresizingMaskIntoConstraints = false
+        gearButton.tintColor = .white
+        gearButton.backgroundColor = UIColor(red: 100/256, green: 100/256, blue: 100/256, alpha: 0.5)
+        gearButton.layer.cornerRadius = 5
+        gearButton.addTarget(self, action: #selector(showGearOptions), for: .touchUpInside)        
+        
+        NSLayoutConstraint.activate([
+            gearButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+            gearButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15),
+            gearButton.heightAnchor.constraint(equalToConstant: 30),
+            gearButton.widthAnchor.constraint(equalToConstant: 30),
+        ])
+    }
+    
+    private func setupHitlabel() {
+        hitLabel.text = "Hit!"
+        hitLabel.font = UIFont(name: "GillSans-UltraBold", size: 80)
+        hitLabel.textAlignment = .center
+        hitLabel.textColor = .systemPink
+        hitLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(hitLabel)
+        hitLabel.isHidden = true
+        
+        NSLayoutConstraint.activate([
+            hitLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            hitLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+    }
+    
     private func setupLabels() {
-        distanceLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        distanceLabel.font = UIFont(name: "Avenir Next", size: 20)
         distanceLabel.textColor = .white
         distanceLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(distanceLabel)
         
         NSLayoutConstraint.activate([
-            distanceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            distanceLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
+            distanceLabel.leftAnchor.constraint(equalTo:view.leftAnchor, constant: 10),
+            distanceLabel.rightAnchor.constraint(equalTo: gearButton.leftAnchor, constant: -10),
             distanceLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
         ])
         
-        timeLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        timeLabel.font = UIFont(name: "Avenir Next", size: 20)
         timeLabel.textColor = .white
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(timeLabel)
         
         NSLayoutConstraint.activate([
-            timeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            timeLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
+            timeLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
+            timeLabel.rightAnchor.constraint(equalTo: gearButton.leftAnchor, constant: -10),
             timeLabel.topAnchor.constraint(equalTo: distanceLabel.bottomAnchor, constant: 10),
         ])
     }
@@ -93,11 +130,11 @@ class GameVC: UIViewController {
         view.addSubview(cloud.image)
         // THIS IS A HACK -> constant should not be equals -30
         // this is just so the cloud is bound to the very top of the screen
-        starTopConstraint = cloud.image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -30)
-        starCenterXConstraint = cloud.image.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        cloudTopConstraint = cloud.image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -30)
+        cloudCenterXConstraint = cloud.image.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         NSLayoutConstraint.activate([
-            starCenterXConstraint,
-            starTopConstraint,
+            cloudCenterXConstraint,
+            cloudTopConstraint,
             cloud.image.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.3),
             cloud.image.heightAnchor.constraint(equalTo: cloud.image.widthAnchor),
         ])
@@ -132,6 +169,44 @@ class GameVC: UIViewController {
         ])
     }
     
+    private func showCounter() {
+        let layerView = UIView()
+        let counterLabel = UILabel()
+        view.addSubview(layerView)
+
+        layerView.translatesAutoresizingMaskIntoConstraints = false
+        layerView.backgroundColor = UIColor(red: 0/256, green: 0/256, blue: 0/256, alpha: 0.5)
+        layerView.addSubview(counterLabel)
+
+        counterLabel.text = String(3)
+        counterLabel.font = UIFont(name: "GillSans-UltraBold", size: 80)
+        counterLabel.textAlignment = .center
+        counterLabel.textColor = .white
+        counterLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            layerView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            layerView.heightAnchor.constraint(equalTo: view.heightAnchor),
+            layerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            layerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            counterLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            counterLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+        
+        var counter = 3
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
+            [weak self] timer in
+            if (counter < 0) {
+                timer.invalidate()
+                layerView.removeFromSuperview()
+                self?.gameEngine()
+            }
+            counterLabel.text = String(counter)
+            counter -= 1
+        }
+    }
+    
     private func gameEngine() {
         let startTime = Date()
         Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true) {
@@ -162,8 +237,16 @@ class GameVC: UIViewController {
                            withMessage message: String,
                            firstButtonMessage: String, secondButtonMessage: String?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: firstButtonMessage, style: .default))
-        if secondButtonMessage != nil { alertController.addAction(UIAlertAction(title: secondButtonMessage, style: .default)) }
+        alertController.addAction(UIAlertAction(title: firstButtonMessage, style: .default) {
+            [weak self] _ in
+            self?.navigationController?.pushViewController(HomeVC(), animated: true)
+        })
+        
+        if secondButtonMessage != nil { alertController.addAction(UIAlertAction(title: secondButtonMessage, style: .default) {
+            [weak self] _ in
+                self?.restartGame()
+            })
+        }
         present(alertController, animated: true)
         
     }
@@ -172,13 +255,13 @@ class GameVC: UIViewController {
         timeLabel.text = "Time: \(Int(timer))s"
         distanceTravelled += 0.03 * airplane.speed
         distanceLabel.text = "Distance behind: \(String(format: "%.2f", distanceTravelled))km"
-        starTopConstraint.constant += CGFloat.random(in: 3...10)
+        cloudTopConstraint.constant += CGFloat.random(in: 3...10)
     }
     
     private func repositionCloud() {
         if self.cloud.image.frame.minY >= self.view.bounds.height {
-            self.starTopConstraint.constant = 0
-            self.starCenterXConstraint.constant = CGFloat(self.cloudPositions.randomElement()!)
+            self.cloudTopConstraint.constant = 0
+            self.cloudCenterXConstraint.constant = CGFloat(self.cloudPositions.randomElement()!)
             self.cloud.setTouchedAirplane(toValue: false)
         }
     }
@@ -187,12 +270,13 @@ class GameVC: UIViewController {
         if !cloud.touchedAirplane && cloudPosition.intersects(airplane.image.frame) {
             cloud.touchedAirplane = true
             cloud.reduceAirplaneSpeed(airplane: airplane)
-            UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 1) {
                 [weak self] in
-                let hitLayer = CALayer()
-                hitLayer.frame = self!.view.frame
-                hitLayer.backgroundColor = UIColor(red: 200/256, green: 0/256, blue: 0/256, alpha: 0.1).cgColor
-                self?.view.layer.addSublayer(hitLayer)
+                self?.hitLabel.isHidden = false
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) {
+                    [weak self] _ in
+                    self?.hitLabel.isHidden = true
+                }
             }
         }
     }
@@ -200,6 +284,7 @@ class GameVC: UIViewController {
     @objc
     private func moveAirplaneToRight() {
         moveAirplane(toDirection: .right, byAmount: 8)
+        print("move")
     }
     
     @objc
@@ -236,6 +321,35 @@ class GameVC: UIViewController {
         }
     }
     
+    private func restartGame() {
+        hitLabel.isHidden = true
+        gameOver = false
+        cloud = Cloud(image: UIImageView(image: UIImage(named: "cloud")))
+        airplane = Airplane(image: UIImageView(image: UIImage(named: "airplane")))
+        distanceTravelled = 0.0
+        cloudTopConstraint.constant = 0
+        cloudCenterXConstraint.constant = CGFloat(cloudPositions.randomElement()!)
+        airplaneXShift = 0
+        timerDuration = 0
+        showCounter()
+    }
+    
+    @objc
+    private func showGearOptions() {
+        let alertVC = UIAlertController(title: "Options", message: nil, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "Restart", style: .destructive) {
+          [weak self] _ in
+            self?.restartGame()
+        })
+        alertVC.addAction(UIAlertAction(title: "Back to Home", style: .default) {
+            [weak self] _ in
+            self?.navigationController?.pushViewController(HomeVC(), animated: true)
+        })
+        present(alertVC, animated: true)
+    }
+    //TODO: REFACTOR SHOWCOUNTER CODE
+    //TODO: IMPLEMENT PLAY AGAIN BUTTON
+    //TODO: SAVE BEST RESULTS LOCALLY
     //TODO: CLOUD CANNOT DISAPPEAR FROM SCREEN AFTER ADDING RANDOM CONSTANT TO X COORDINATE
 }
 
