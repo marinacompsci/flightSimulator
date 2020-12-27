@@ -18,9 +18,12 @@ class GameVC: UIViewController {
     let timeLabel = UILabel()
     let distanceLabel = UILabel()
     var distanceTravelled = 0.0
+    var timerDuration = 0
     
     let gameOver = false
     var airplaneXShift = CGFloat(0)
+    var starTopConstraint: NSLayoutConstraint!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +59,7 @@ class GameVC: UIViewController {
         NSLayoutConstraint.activate([
             distanceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             distanceLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
-            distanceLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            distanceLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
         ])
         
         timeLabel.font = UIFont.preferredFont(forTextStyle: .body)
@@ -86,10 +89,12 @@ class GameVC: UIViewController {
     private func setupClouds() {
         cloud.image.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(cloud.image)
-        
+        // THIS IS A HACK -> constant should not be equals -30
+        // this is just so the cloud is bound to the very top of the screen
+        starTopConstraint = cloud.image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -30)
         NSLayoutConstraint.activate([
             cloud.image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            cloud.image.topAnchor.constraint(equalTo: distanceLabel.topAnchor),
+            starTopConstraint,
             cloud.image.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.3),
             cloud.image.heightAnchor.constraint(equalTo: cloud.image.widthAnchor),
         ])
@@ -107,7 +112,6 @@ class GameVC: UIViewController {
         leftArrow.setBackgroundImage(UIImage(systemName: "chevron.left.circle.fill"), for: .normal)
         leftArrow.addTarget(self, action: #selector(moveAirplaneToLeft), for: .touchUpInside)
         leftArrow.addTarget(self, action: #selector(pushAirplaneToLeft), for: .touchUpInside)
-
         
         rightArrow.translatesAutoresizingMaskIntoConstraints = false
         leftArrow.translatesAutoresizingMaskIntoConstraints = false
@@ -127,33 +131,43 @@ class GameVC: UIViewController {
     
     private func gameEngine() {
         let startTime = Date()
-        var yPosition: Double = 0
         Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true) {
             [weak self] timer in
-            let timerDuration = Int(round(Date().timeIntervalSince(startTime)))
-            yPosition += 0.03
-            self?.updateViews(timer: timerDuration, yPosition: yPosition)
-            self?.checkTouch(cloudPosition: self!.cloud.image.frame)
-            if (timerDuration == Int(self!.airplane.flightDuration)) {
+            guard let self = self else { return }
+            self.timerDuration = Int(round(Date().timeIntervalSince(startTime)))
+            self.updateViews(timer: self.timerDuration)
+            // This is a hack -> Found out how to crop image out of imageView
+            // Touch only when it really touches the image and not the rectangle where the image is inside
+            // if self.checkTouch(cloudPosition: self.cloud.image.frame.insetBy(dx: 0, dy: 58)) { yPosition = 0;}
+            // Maybe look for a vector img
+            self.checkTouch(cloudPosition: self.cloud.image.frame.insetBy(dx: 0, dy: 58))
+            if self.cloud.image.frame.minY >= self.view.bounds.height {
+                self.starTopConstraint.constant = 0
+            }
+            
+            if (self.airplane.crashed || self.timerDuration == Int(self.airplane.flightDuration)) {
                 timer.invalidate()
             }
         }
     }
     
-    private func updateViews(timer: Int, yPosition: Double) {
+    private func updateViews(timer: Int) {
         timeLabel.text = "Time: \(Int(timer))s"
         distanceTravelled += 0.03 * airplane.speed
         distanceLabel.text = "Distance behind: \(String(format: "%.2f", distanceTravelled))km"
-        
-        UIView.animate(withDuration: 1, animations: {
-            [weak self] in
-            self?.cloud.image.transform = CGAffineTransform(translationX: 0, y: CGFloat(yPosition*100))
-        })
+        starTopConstraint.constant += 3
     }
 
     private func checkTouch(cloudPosition: CGRect) {
         if cloudPosition.intersects(airplane.image.frame) {
             cloud.reduceAirplaneSpeed(airplane: airplane)
+            /*UIView.animate(withDuration: 0.5) {
+                [weak self] in
+                let hitLayer = CALayer()
+                hitLayer.frame = self!.view.frame
+                hitLayer.backgroundColor = UIColor(red: 200/256, green: 0/256, blue: 0/256, alpha: 0.1).cgColor
+                self?.view.layer.addSublayer(hitLayer)
+            }*/
         }
     }
 
@@ -197,5 +211,6 @@ class GameVC: UIViewController {
     }
     
     //TODO: CLOUD TOUCHES AIRPLANE -> SCREEN GOES RED
+    //TODO: CLOUD TOUCHED AIRPLANE -> CLOUD DISAPPEARS. NEW CLOUD APPEARS WITH RANDOM X-COORD
 }
 

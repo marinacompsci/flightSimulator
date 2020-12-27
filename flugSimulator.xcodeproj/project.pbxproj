@@ -49,6 +49,13 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		F1547C512597982C007C5891 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		F1610D872593CB75009CA37B = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +75,7 @@
 		F1610D922593CB75009CA37B /* flugSimulator */ = {
 			isa = PBXGroup;
 			children = (
+				F1547C512597982C007C5891 /* Protocols */,
 				F1547C4A25978DC4007C5891 /* Enums */,
 				F1610DB42593E199009CA37B /* Model */,
 				F1610DAD2593CBF6009CA37B /* View Controllers */,

@@ -23,6 +23,8 @@ class Airplane {
      */
     let stallSpeed: Double = 235 / 3600
     
+    var crashed = false
+    
     var image: UIImageView!
     
     func reduceSpeed(byAmount amount: Double) {
