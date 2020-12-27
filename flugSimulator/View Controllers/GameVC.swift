@@ -64,7 +64,7 @@ class GameVC: UIViewController {
         gearButton.tintColor = .white
         gearButton.backgroundColor = UIColor(red: 100/256, green: 100/256, blue: 100/256, alpha: 0.5)
         gearButton.layer.cornerRadius = 5
-        gearButton.addTarget(self, action: #selector(showGearOptions), for: .touchUpInside)        
+        gearButton.addTarget(self, action: #selector(showGearOptions), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             gearButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
@@ -98,7 +98,7 @@ class GameVC: UIViewController {
         NSLayoutConstraint.activate([
             distanceLabel.leftAnchor.constraint(equalTo:view.leftAnchor, constant: 10),
             distanceLabel.rightAnchor.constraint(equalTo: gearButton.leftAnchor, constant: -10),
-            distanceLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            distanceLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
         ])
         
         timeLabel.font = UIFont(name: "Avenir Next", size: 20)
@@ -284,7 +284,6 @@ class GameVC: UIViewController {
     @objc
     private func moveAirplaneToRight() {
         moveAirplane(toDirection: .right, byAmount: 8)
-        print("move")
     }
     
     @objc
