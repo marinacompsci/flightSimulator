@@ -140,15 +140,32 @@ class GameVC: UIViewController {
             self.timerDuration = Int(round(Date().timeIntervalSince(startTime)))
             self.updateViews(timer: self.timerDuration)
             // This is a hack -> Find out how to crop image out of imageView
-            // Touch only when it really touches the image and not the rectangle where the image is inside
+            // Fire only when it really touches the image and not the rectangle where the image is inside
             // Maybe look for a vector img
             self.checkTouch(cloudPosition: self.cloud.image.frame.insetBy(dx: 0, dy: 58))
             self.repositionCloud()
-            
-            if (self.airplane.crashed || self.timerDuration == Int(self.airplane.flightDuration)) {
-                timer.invalidate()
-            }
+            self.checkGame(insideTimer: timer)
         }
+    }
+    
+    private func checkGame(insideTimer timer: Timer) {
+        if (timerDuration == Int(airplane.flightDuration)) {
+            showAlert(withTitle: "Congratulations!", withMessage: "You managed to survive for 2 minutes.", firstButtonMessage: "Close", secondButtonMessage: "Play again")
+            timer.invalidate()
+        } else if airplane.crashed {
+            showAlert(withTitle: "Game Over!", withMessage: "You lost too much speed.", firstButtonMessage: "Close", secondButtonMessage: "Play again")
+            timer.invalidate()
+        }
+    }
+    
+    private func showAlert(withTitle title: String,
+                           withMessage message: String,
+                           firstButtonMessage: String, secondButtonMessage: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: firstButtonMessage, style: .default))
+        if secondButtonMessage != nil { alertController.addAction(UIAlertAction(title: secondButtonMessage, style: .default)) }
+        present(alertController, animated: true)
+        
     }
     
     private func updateViews(timer: Int) {
