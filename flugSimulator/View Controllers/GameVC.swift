@@ -28,7 +28,6 @@ class GameVC: UIViewController {
     var cloudTopConstraint: NSLayoutConstraint!
     var cloudCenterXConstraint: NSLayoutConstraint!
     let cloudPositions = [-100, -80, -50, -30, -10, 10, 30, 50, 80, 100]
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -170,28 +169,11 @@ class GameVC: UIViewController {
     }
     
     private func showCounter() {
-        let layerView = UIView()
-        let counterLabel = UILabel()
+        let layerView = CounterView()
         view.addSubview(layerView)
-
-        layerView.translatesAutoresizingMaskIntoConstraints = false
-        layerView.backgroundColor = UIColor(red: 0/256, green: 0/256, blue: 0/256, alpha: 0.5)
-        layerView.addSubview(counterLabel)
-
-        counterLabel.text = String(3)
-        counterLabel.font = UIFont(name: "GillSans-UltraBold", size: 80)
-        counterLabel.textAlignment = .center
-        counterLabel.textColor = .white
-        counterLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
-            layerView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            layerView.heightAnchor.constraint(equalTo: view.heightAnchor),
             layerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             layerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
-            counterLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            counterLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
         
         var counter = 3
@@ -202,7 +184,7 @@ class GameVC: UIViewController {
                 layerView.removeFromSuperview()
                 self?.gameEngine()
             }
-            counterLabel.text = String(counter)
+            layerView.counterLabel.text = String(counter)
             counter -= 1
         }
     }
@@ -346,9 +328,10 @@ class GameVC: UIViewController {
         })
         present(alertVC, animated: true)
     }
-    //TODO: REFACTOR SHOWCOUNTER CODE
+    
     //TODO: IMPLEMENT PLAY AGAIN BUTTON
     //TODO: SAVE BEST RESULTS LOCALLY
+    //TODO: REFACTOR OTHER VIEWS OUT OF THIS VIEWCONTROLLER
     //TODO: CLOUD CANNOT DISAPPEAR FROM SCREEN AFTER ADDING RANDOM CONSTANT TO X COORDINATE
 }
 

@@ -18,6 +18,7 @@
 		F1610DA02593CB79009CA37B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1610D9E2593CB79009CA37B /* LaunchScreen.storyboard */; };
 		F1610DB62593E1AA009CA37B /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1610DB52593E1AA009CA37B /* Cloud.swift */; };
 		F1610DBA2593E1B3009CA37B /* Airplane.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1610DB92593E1B3009CA37B /* Airplane.swift */; };
+		F1B58BEF25994AA5004CB319 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B58BEE25994AA5004CB319 /* CounterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		F1610DA12593CB79009CA37B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1610DB52593E1AA009CA37B /* Cloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
 		F1610DB92593E1B3009CA37B /* Airplane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airplane.swift; sourceTree = "<group>"; };
+		F1B58BEE25994AA5004CB319 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				F1547C582598C6B5007C5891 /* HomeView.swift */,
+				F1B58BEE25994AA5004CB319 /* CounterView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				F1610D962593CB75009CA37B /* SceneDelegate.swift in Sources */,
 				F1547C4C25978DD2007C5891 /* Direction.swift in Sources */,
 				F1547C5C259902B8007C5891 /* GameProtocol.swift in Sources */,
+				F1B58BEF25994AA5004CB319 /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
