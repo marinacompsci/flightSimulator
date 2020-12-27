@@ -10,7 +10,8 @@ import UIKit
 class GameVC: UIViewController {
     
     let airplane = Airplane(image: UIImageView(image: UIImage(named: "airplane")))
-    let cloud = Cloud(image: UIImageView(image: UIImage(named: "cloud")))
+    var cloud = Cloud(image: UIImageView(image: UIImage(named: "cloud")))
+    
     let rightArrow = UIButton()
     let leftArrow = UIButton()
     var backgroundView: UIImageView!
@@ -23,7 +24,8 @@ class GameVC: UIViewController {
     let gameOver = false
     var airplaneXShift = CGFloat(0)
     var starTopConstraint: NSLayoutConstraint!
-
+    var starCenterXConstraint: NSLayoutConstraint!
+    let cloudPositions = [-100, -80, -50, -30, -10, 10, 30, 50, 80, 100]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,8 +94,9 @@ class GameVC: UIViewController {
         // THIS IS A HACK -> constant should not be equals -30
         // this is just so the cloud is bound to the very top of the screen
         starTopConstraint = cloud.image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -30)
+        starCenterXConstraint = cloud.image.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         NSLayoutConstraint.activate([
-            cloud.image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            starCenterXConstraint,
             starTopConstraint,
             cloud.image.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.3),
             cloud.image.heightAnchor.constraint(equalTo: cloud.image.widthAnchor),
@@ -136,14 +139,11 @@ class GameVC: UIViewController {
             guard let self = self else { return }
             self.timerDuration = Int(round(Date().timeIntervalSince(startTime)))
             self.updateViews(timer: self.timerDuration)
-            // This is a hack -> Found out how to crop image out of imageView
+            // This is a hack -> Find out how to crop image out of imageView
             // Touch only when it really touches the image and not the rectangle where the image is inside
-            // if self.checkTouch(cloudPosition: self.cloud.image.frame.insetBy(dx: 0, dy: 58)) { yPosition = 0;}
             // Maybe look for a vector img
             self.checkTouch(cloudPosition: self.cloud.image.frame.insetBy(dx: 0, dy: 58))
-            if self.cloud.image.frame.minY >= self.view.bounds.height {
-                self.starTopConstraint.constant = 0
-            }
+            self.repositionCloud()
             
             if (self.airplane.crashed || self.timerDuration == Int(self.airplane.flightDuration)) {
                 timer.invalidate()
@@ -155,19 +155,28 @@ class GameVC: UIViewController {
         timeLabel.text = "Time: \(Int(timer))s"
         distanceTravelled += 0.03 * airplane.speed
         distanceLabel.text = "Distance behind: \(String(format: "%.2f", distanceTravelled))km"
-        starTopConstraint.constant += 3
+        starTopConstraint.constant += CGFloat.random(in: 3...10)
+    }
+    
+    private func repositionCloud() {
+        if self.cloud.image.frame.minY >= self.view.bounds.height {
+            self.starTopConstraint.constant = 0
+            self.starCenterXConstraint.constant = CGFloat(self.cloudPositions.randomElement()!)
+            self.cloud.setTouchedAirplane(toValue: false)
+        }
     }
 
     private func checkTouch(cloudPosition: CGRect) {
-        if cloudPosition.intersects(airplane.image.frame) {
+        if !cloud.touchedAirplane && cloudPosition.intersects(airplane.image.frame) {
+            cloud.touchedAirplane = true
             cloud.reduceAirplaneSpeed(airplane: airplane)
-            /*UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.5) {
                 [weak self] in
                 let hitLayer = CALayer()
                 hitLayer.frame = self!.view.frame
                 hitLayer.backgroundColor = UIColor(red: 200/256, green: 0/256, blue: 0/256, alpha: 0.1).cgColor
                 self?.view.layer.addSublayer(hitLayer)
-            }*/
+            }
         }
     }
 
@@ -210,7 +219,6 @@ class GameVC: UIViewController {
         }
     }
     
-    //TODO: CLOUD TOUCHES AIRPLANE -> SCREEN GOES RED
-    //TODO: CLOUD TOUCHED AIRPLANE -> CLOUD DISAPPEARS. NEW CLOUD APPEARS WITH RANDOM X-COORD
+    //TODO: CLOUD CANNOT DISAPPEAR FROM SCREEN AFTER ADDING RANDOM CONSTANT TO X COORDINATE
 }
 

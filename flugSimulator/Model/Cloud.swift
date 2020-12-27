@@ -12,10 +12,16 @@ struct Cloud {
     
     var image: UIImageView!
     
+    var touchedAirplane = false
+    
     func reduceAirplaneSpeed(airplane: Airplane) {
         airplane.reduceSpeed(byAmount: (1-speedReduction))
         if (airplane.speed <= airplane.stallSpeed) {
-            // lose game
+            airplane.crashed = true
         }
+    }
+    
+    mutating func setTouchedAirplane(toValue value: Bool) {
+        touchedAirplane = value
     }
 }
