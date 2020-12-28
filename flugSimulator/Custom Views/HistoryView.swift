@@ -22,13 +22,13 @@ class HistoryView: UIView {
     
     private func setupCollectionView() {
         // 2 items per row
-        let itemsMarginToBorders = 20.0
-        let spaceBetweenItems = 10.0
+        let itemsMarginToBorders = 10.0
+        let spaceBetweenItems = 5.0
         let spaceBetweenRows = 20.0
         let size = (Double((bounds.width)) / 2) - (itemsMarginToBorders * 2) - spaceBetweenItems
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
         
+        layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: size, height: size)
         layout.minimumInteritemSpacing = CGFloat(spaceBetweenItems)
         layout.minimumLineSpacing = CGFloat(spaceBetweenRows)
@@ -46,9 +46,7 @@ class HistoryView: UIView {
             collectionView.rightAnchor.constraint(equalTo: rightAnchor),
             collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-        ])
-        
-        
+        ])        
     }
 }
 
@@ -58,7 +56,8 @@ extension HistoryView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HistoryCell.reuseId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HistoryCell.reuseId, for: indexPath) as! HistoryCell
+        cell.setup(date: Date(), distance: 10, speed: 123)
         return cell
     }
     

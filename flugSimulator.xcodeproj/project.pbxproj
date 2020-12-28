@@ -23,6 +23,7 @@
 		F1E7AF14259A435400D58790 /* GameHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E7AF13259A435400D58790 /* GameHistoryVC.swift */; };
 		F1E7AF17259A748A00D58790 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E7AF16259A748A00D58790 /* HistoryView.swift */; };
 		F1E7AF1B259A7E9D00D58790 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E7AF1A259A7E9D00D58790 /* HistoryCell.swift */; };
+		F1E7AF1F259A8C3700D58790 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E7AF1E259A8C3700D58790 /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		F1E7AF13259A435400D58790 /* GameHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHistoryVC.swift; sourceTree = "<group>"; };
 		F1E7AF16259A748A00D58790 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		F1E7AF1A259A7E9D00D58790 /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		F1E7AF1E259A8C3700D58790 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 		F1610D922593CB75009CA37B /* flugSimulator */ = {
 			isa = PBXGroup;
 			children = (
+				F1E7AF1D259A8C2A00D58790 /* Extensions */,
 				F1547C512597982C007C5891 /* Protocols */,
 				F1547C4A25978DC4007C5891 /* Enums */,
 				F1610DB42593E199009CA37B /* Model */,
@@ -143,6 +146,14 @@
 				F1610DB92593E1B3009CA37B /* Airplane.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F1E7AF1D259A8C2A00D58790 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F1E7AF1E259A8C3700D58790 /* Date+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +234,7 @@
 				F1610DBA2593E1B3009CA37B /* Airplane.swift in Sources */,
 				F1E7AF11259A3D8300D58790 /* GameTabVC.swift in Sources */,
 				F1E7AF1B259A7E9D00D58790 /* HistoryCell.swift in Sources */,
+				F1E7AF1F259A8C3700D58790 /* Date+Ext.swift in Sources */,
 				F1547C592598C6B5007C5891 /* HomeView.swift in Sources */,
 				F1610D962593CB75009CA37B /* SceneDelegate.swift in Sources */,
 				F1547C4C25978DD2007C5891 /* Direction.swift in Sources */,
