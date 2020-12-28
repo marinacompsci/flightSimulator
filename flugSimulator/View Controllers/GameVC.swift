@@ -24,10 +24,12 @@ class GameVC: UIViewController {
     let hitLabel = UILabel()
     
     var gameOver = false
+    var isCounting = false
     var airplaneXShift = CGFloat(0)
     var cloudTopConstraint: NSLayoutConstraint!
     var cloudCenterXConstraint: NSLayoutConstraint!
     let cloudPositions = [-100, -80, -50, -30, -10, 10, 30, 50, 80, 100]
+    var gameTimer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -169,6 +171,7 @@ class GameVC: UIViewController {
     }
     
     private func showCounter() {
+        isCounting = true
         let layerView = CounterView()
         view.addSubview(layerView)
         NSLayoutConstraint.activate([
@@ -180,6 +183,7 @@ class GameVC: UIViewController {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             [weak self] timer in
             if (counter < 0) {
+                self?.isCounting = false
                 timer.invalidate()
                 layerView.removeFromSuperview()
                 self?.gameEngine()
@@ -191,7 +195,7 @@ class GameVC: UIViewController {
     
     private func gameEngine() {
         let startTime = Date()
-        Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true) {
+        gameTimer = Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true) {
             [weak self] timer in
             guard let self = self else { return }
             self.timerDuration = Int(round(Date().timeIntervalSince(startTime)))
@@ -207,11 +211,11 @@ class GameVC: UIViewController {
     
     private func checkGame(insideTimer timer: Timer) {
         if (timerDuration == Int(airplane.flightDuration)) {
+            timer.invalidate()
             showAlert(withTitle: "Congratulations!", withMessage: "You managed to survive for 2 minutes.", firstButtonMessage: "Close", secondButtonMessage: "Play again")
-            timer.invalidate()
         } else if airplane.crashed {
-            showAlert(withTitle: "Game Over!", withMessage: "You lost too much speed.", firstButtonMessage: "Close", secondButtonMessage: "Play again")
             timer.invalidate()
+            showAlert(withTitle: "Game Over!", withMessage: "You lost too much speed.", firstButtonMessage: "Close", secondButtonMessage: "Play again")
         }
     }
     
@@ -226,6 +230,7 @@ class GameVC: UIViewController {
         
         if secondButtonMessage != nil { alertController.addAction(UIAlertAction(title: secondButtonMessage, style: .default) {
             [weak self] _ in
+                self?.gameTimer.invalidate()
                 self?.restartGame()
             })
         }
@@ -303,35 +308,40 @@ class GameVC: UIViewController {
     }
     
     private func restartGame() {
-        hitLabel.isHidden = true
-        gameOver = false
-        cloud = Cloud(image: UIImageView(image: UIImage(named: "cloud")))
-        airplane = Airplane(image: UIImageView(image: UIImage(named: "airplane")))
-        distanceTravelled = 0.0
-        cloudTopConstraint.constant = 0
+        /*hitLabel.isHidden = true
+        */
         cloudCenterXConstraint.constant = CGFloat(cloudPositions.randomElement()!)
+        cloudTopConstraint.constant = 0
         airplaneXShift = 0
-        timerDuration = 0
+        cloud.touchedAirplane = false
+        airplane.speed = 847 / 3600
+        airplane.crashed = false
+        gameOver = false
+        distanceTravelled = 0.0
         showCounter()
     }
     
     @objc
     private func showGearOptions() {
+        guard !isCounting else { return }
         let alertVC = UIAlertController(title: "Options", message: nil, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "Restart", style: .destructive) {
           [weak self] _ in
+            self?.gameTimer.invalidate()
             self?.restartGame()
         })
         alertVC.addAction(UIAlertAction(title: "Back to Home", style: .default) {
             [weak self] _ in
+            self?.gameTimer.invalidate()
             self?.navigationController?.pushViewController(HomeVC(), animated: true)
         })
         present(alertVC, animated: true)
     }
     
-    //TODO: IMPLEMENT PLAY AGAIN BUTTON
     //TODO: SAVE BEST RESULTS LOCALLY
     //TODO: REFACTOR OTHER VIEWS OUT OF THIS VIEWCONTROLLER
+    //TODO: CHECK IF SPEED IS INDEED DECREASING
     //TODO: CLOUD CANNOT DISAPPEAR FROM SCREEN AFTER ADDING RANDOM CONSTANT TO X COORDINATE
+    
 }
 
