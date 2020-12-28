@@ -308,8 +308,6 @@ class GameVC: UIViewController {
     }
     
     private func restartGame() {
-        /*hitLabel.isHidden = true
-        */
         cloudCenterXConstraint.constant = CGFloat(cloudPositions.randomElement()!)
         cloudTopConstraint.constant = 0
         airplaneXShift = 0
