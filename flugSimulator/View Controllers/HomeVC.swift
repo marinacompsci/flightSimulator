@@ -11,7 +11,7 @@ class HomeVC: UIViewController {
     
     var backgroundView: UIImageView!
     var airplane: Airplane!
-    var gameVC: GameTabVC!
+    var gameVC: GameVC!
     var gameProtocol: GameProtocol!
     
     override func viewDidLoad() {
@@ -21,11 +21,10 @@ class HomeVC: UIViewController {
     }
     
     private func setup() {
-        navigationController?.navigationBar.isHidden = true
         // DELETE THIS LATER
         backgroundView = UIImageView(image: UIImage(named: "background"))
         airplane = Airplane(image: UIImageView(image: UIImage(named: "airplane")))
-        gameVC = GameTabVC()
+        gameVC = GameVC()
         
         let homeVC = HomeView(frame: view.frame, backgroundView: backgroundView, airplane: airplane)
         view = homeVC

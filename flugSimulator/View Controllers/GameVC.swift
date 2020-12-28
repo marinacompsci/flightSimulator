@@ -322,16 +322,16 @@ class GameVC: UIViewController {
     @objc
     private func showGearOptions() {
         guard !isCounting else { return }
-        let alertVC = UIAlertController(title: "Options", message: nil, preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "Game Options", message: nil, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "Restart", style: .destructive) {
           [weak self] _ in
             self?.gameTimer.invalidate()
             self?.restartGame()
         })
-        alertVC.addAction(UIAlertAction(title: "Back to Home", style: .default) {
+        alertVC.addAction(UIAlertAction(title: "Back To Home Screen", style: .default) {
             [weak self] _ in
             self?.gameTimer.invalidate()
-            self?.navigationController?.pushViewController(HomeVC(), animated: true)
+            self?.navigationController?.pushViewController(GameTabVC(), animated: true)
         })
         present(alertVC, animated: true)
     }
