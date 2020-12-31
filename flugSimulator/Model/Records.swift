@@ -16,7 +16,6 @@ struct Records: Codable {
     public func getAllRecords() -> [Record]? {
         let defaults = UserDefaults.standard
         
-        //PROBLEM HERE getAllRecords returns NIL
         if let recordData = defaults.object(forKey: key) as? Data {
             if let records = try? PropertyListDecoder().decode([Record].self, from: recordData) {
                 return records
@@ -28,22 +27,44 @@ struct Records: Codable {
     
     public func setRecord(record: Record) {
         let defaults = UserDefaults.standard
-        //let encoder = JSONEncoder()
         var allRecords = getAllRecords()
         
         if allRecords != nil {
-            allRecords!.append(record)
+            // Replace an old highscore with new one
+            // in case there is already 10 entries of highscore saved
+            if allRecords!.capacity == 10 {
+                let recordIsHighscore = isHighscore(record: record)
+                guard recordIsHighscore != nil, recordIsHighscore == true else { return}
+                
+                if let index = allRecords?.lastIndex(where: {record.distance >= $0.distance && record.speed >= $0.speed }) {
+                    allRecords![index] = record
+                    defaults.setValue(try? PropertyListEncoder().encode(allRecords), forKey: key)
+                    return
+                }
+            }
             
-            defaults.setValue(allRecords, forKey: key)
+            allRecords!.append(record)
+            defaults.setValue(try? PropertyListEncoder().encode(allRecords), forKey: key)
             return
         }
         
         // UserDefaults has no record -- very first record being set
         var recordsArray = [Record]()
         recordsArray.append(record)
-        defaults.setValue(try? PropertyListEncoder().encode(recordsArray), forKey: key)
-        //defaults.setValue(recordsArray, forKey: key)
         
+        // Cannot save custom type([Record])
+        // Transforming [Record] into Data
+        defaults.setValue(try? PropertyListEncoder().encode(recordsArray), forKey: key)
+    }
+    
+    public func isHighscore(record: Record) -> Bool? {
+        let allRecords = getAllRecords()
+        
+        if let isHighscore = allRecords?.contains(where: { record.distance >= $0.distance  && record.speed >= $0.speed}) {
+            return isHighscore
+        }
+        
+        return nil        
     }
     
 }
