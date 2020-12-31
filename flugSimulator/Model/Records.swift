@@ -32,7 +32,7 @@ struct Records: Codable {
         if allRecords != nil {
             // Replace an old highscore with new one
             // in case there is already 10 entries of highscore saved
-            if allRecords!.capacity == 10 {
+            if allRecords!.count == 10 {
                 let recordIsHighscore = isHighscore(record: record)
                 guard recordIsHighscore != nil, recordIsHighscore == true else { return}
                 
