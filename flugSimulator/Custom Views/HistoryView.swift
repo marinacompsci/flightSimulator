@@ -55,7 +55,7 @@ class HistoryView: UIView {
 extension HistoryView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let allRecords = records else { return 0 }
-        return allRecords.capacity
+        return allRecords.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -67,7 +67,7 @@ extension HistoryView: UICollectionViewDataSource {
         if let allRecords = records, (allRecords.count)-1 >= indexPath.row  {
             record = allRecords[indexPath.row]
         } else {
-            record = Record(date: Date(), speed: 10.0, distance: 123.0)
+            record = Record(date: Date(), speed: 0.0, distance: 0.0)
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HistoryCell.reuseId, for: indexPath) as! HistoryCell
