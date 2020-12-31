@@ -54,7 +54,7 @@ class HistoryView: UIView {
 
 extension HistoryView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let allRecords = records else { return 10 }
+        guard let allRecords = records else { return 0 }
         return allRecords.capacity
     }
     
