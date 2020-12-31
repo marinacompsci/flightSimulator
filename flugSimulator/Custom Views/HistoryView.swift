@@ -64,7 +64,7 @@ extension HistoryView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var record: Record!
-        if let allRecords = records, (allRecords.capacity)-1 >= indexPath.row  {
+        if let allRecords = records, (allRecords.count)-1 >= indexPath.row  {
             record = allRecords[indexPath.row]
         } else {
             record = Record(date: Date(), speed: 10.0, distance: 123.0)
