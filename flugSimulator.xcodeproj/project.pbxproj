@@ -18,7 +18,10 @@
 		F1610DA02593CB79009CA37B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1610D9E2593CB79009CA37B /* LaunchScreen.storyboard */; };
 		F1610DB62593E1AA009CA37B /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1610DB52593E1AA009CA37B /* Cloud.swift */; };
 		F1610DBA2593E1B3009CA37B /* Airplane.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1610DB92593E1B3009CA37B /* Airplane.swift */; };
+		F180A9E1259B3EE6005F7563 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F180A9E0259B3EE6005F7563 /* Double+Ext.swift */; };
 		F1B58BEF25994AA5004CB319 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B58BEE25994AA5004CB319 /* CounterView.swift */; };
+		F1B8A398259B34E100F7A06B /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B8A397259B34E100F7A06B /* Record.swift */; };
+		F1B8A39B259B366400F7A06B /* Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B8A39A259B366400F7A06B /* Records.swift */; };
 		F1E7AF11259A3D8300D58790 /* GameTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E7AF10259A3D8300D58790 /* GameTabVC.swift */; };
 		F1E7AF14259A435400D58790 /* GameHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E7AF13259A435400D58790 /* GameHistoryVC.swift */; };
 		F1E7AF17259A748A00D58790 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E7AF16259A748A00D58790 /* HistoryView.swift */; };
@@ -40,7 +43,10 @@
 		F1610DA12593CB79009CA37B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1610DB52593E1AA009CA37B /* Cloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
 		F1610DB92593E1B3009CA37B /* Airplane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airplane.swift; sourceTree = "<group>"; };
+		F180A9E0259B3EE6005F7563 /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
 		F1B58BEE25994AA5004CB319 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		F1B8A397259B34E100F7A06B /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		F1B8A39A259B366400F7A06B /* Records.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Records.swift; sourceTree = "<group>"; };
 		F1E7AF10259A3D8300D58790 /* GameTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTabVC.swift; sourceTree = "<group>"; };
 		F1E7AF13259A435400D58790 /* GameHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHistoryVC.swift; sourceTree = "<group>"; };
 		F1E7AF16259A748A00D58790 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
@@ -144,6 +150,8 @@
 			children = (
 				F1610DB52593E1AA009CA37B /* Cloud.swift */,
 				F1610DB92593E1B3009CA37B /* Airplane.swift */,
+				F1B8A397259B34E100F7A06B /* Record.swift */,
+				F1B8A39A259B366400F7A06B /* Records.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -152,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				F1E7AF1E259A8C3700D58790 /* Date+Ext.swift */,
+				F180A9E0259B3EE6005F7563 /* Double+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -229,8 +238,11 @@
 				F1547C562598C586007C5891 /* HomeVC.swift in Sources */,
 				F1610DB62593E1AA009CA37B /* Cloud.swift in Sources */,
 				F1E7AF14259A435400D58790 /* GameHistoryVC.swift in Sources */,
+				F1B8A39B259B366400F7A06B /* Records.swift in Sources */,
 				F1E7AF17259A748A00D58790 /* HistoryView.swift in Sources */,
 				F1610D942593CB75009CA37B /* AppDelegate.swift in Sources */,
+				F1B8A398259B34E100F7A06B /* Record.swift in Sources */,
+				F180A9E1259B3EE6005F7563 /* Double+Ext.swift in Sources */,
 				F1610DBA2593E1B3009CA37B /* Airplane.swift in Sources */,
 				F1E7AF11259A3D8300D58790 /* GameTabVC.swift in Sources */,
 				F1E7AF1B259A7E9D00D58790 /* HistoryCell.swift in Sources */,

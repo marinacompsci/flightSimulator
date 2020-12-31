@@ -19,9 +19,10 @@ class GameVC: UIViewController {
     let timeLabel = UILabel()
     let distanceLabel = UILabel()
     let gearButton = UIButton()
+    let hitLabel = UILabel()
+    
     var distanceTravelled = 0.0
     var timerDuration = 0
-    let hitLabel = UILabel()
     
     var gameOver = false
     var isCounting = false
@@ -30,7 +31,7 @@ class GameVC: UIViewController {
     var cloudCenterXConstraint: NSLayoutConstraint!
     let cloudPositions = [-100, -80, -50, -30, -10, 10, 30, 50, 80, 100]
     var gameTimer: Timer!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -212,6 +213,7 @@ class GameVC: UIViewController {
     private func checkGame(insideTimer timer: Timer) {
         if (timerDuration == Int(airplane.flightDuration)) {
             timer.invalidate()
+            saveRecord()
             showAlert(withTitle: "Congratulations!", withMessage: "You managed to survive for 2 minutes.", firstButtonMessage: "Close", secondButtonMessage: "Play again")
         } else if airplane.crashed {
             timer.invalidate()
@@ -225,7 +227,7 @@ class GameVC: UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: firstButtonMessage, style: .default) {
             [weak self] _ in
-            self?.navigationController?.pushViewController(HomeVC(), animated: true)
+            self?.navigationController?.pushViewController(GameTabVC(), animated: true)
         })
         
         if secondButtonMessage != nil { alertController.addAction(UIAlertAction(title: secondButtonMessage, style: .default) {
@@ -241,7 +243,7 @@ class GameVC: UIViewController {
     private func updateViews(timer: Int) {
         timeLabel.text = "Time: \(Int(timer))s"
         distanceTravelled += 0.03 * airplane.speed
-        distanceLabel.text = "Distance behind: \(String(format: "%.2f", distanceTravelled))km"
+        distanceLabel.text = "Distance behind: \(distanceTravelled.format2Decimals())km"
         cloudTopConstraint.constant += CGFloat.random(in: 3...10)
     }
     
@@ -334,6 +336,16 @@ class GameVC: UIViewController {
             self?.navigationController?.pushViewController(GameTabVC(), animated: true)
         })
         present(alertVC, animated: true)
+    }
+    
+    private func saveRecord() {
+        // VERIFY IF CURRENT RECORD IS BETTER THAN ANY OF THE SAVED ONES -> IF YES: SAVE
+        
+        let record = Record(date: Date(),
+                            speed: airplane.speed,
+                            distance: distanceTravelled)
+        
+        Records().setRecord(record: record)
     }
     
     //TODO: SAVE BEST RESULTS LOCALLY

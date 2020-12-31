@@ -8,7 +8,9 @@
 import UIKit
 
 class HistoryView: UIView {
+    
     var collectionView: UICollectionView!
+    let records = Records().getAllRecords()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -55,9 +57,20 @@ extension HistoryView: UICollectionViewDataSource {
         return 10
     }
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var record: Record!
+        if let allRecords = records, (allRecords.capacity)-1 >= indexPath.row  {
+            record = allRecords[indexPath.row]
+        } else {
+            record = Record(date: Date(), speed: 10.0, distance: 123.0)
+        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HistoryCell.reuseId, for: indexPath) as! HistoryCell
-        cell.setup(date: Date(), distance: 10, speed: 123)
+        cell.setup(date: record.date, distance: record.distance, speed: record.speed)
         return cell
     }
     

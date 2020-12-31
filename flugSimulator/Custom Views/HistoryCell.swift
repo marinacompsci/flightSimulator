@@ -59,7 +59,7 @@ class HistoryCell: UICollectionViewCell {
     private func setupDistanceLabel() {
         distanceLabel.textColor = .white
         distanceLabel.font = UIFont(name: "Avenir Next Condensed", size: 20)
-        distanceLabel.text = "Distance: \(distance!)"
+        distanceLabel.text = "Distance: \(distance!.format2Decimals()) km"
         distanceLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(distanceLabel)
         
@@ -70,7 +70,7 @@ class HistoryCell: UICollectionViewCell {
     }
     
     private func setupSpeedLabel() {
-        speedLabel.text = "Speed: \(speed!)"
+        speedLabel.text = "Speed: \(speed!.format2Decimals()) km/h"
         speedLabel.textColor = .white
         speedLabel.font = UIFont(name: "Avenir Next Condensed", size: 20)
         speedLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -85,7 +85,7 @@ class HistoryCell: UICollectionViewCell {
     
     
     private func setupDateLabel() {
-        dateLabel.text = "\(date.formatToSimpleDate())"
+        dateLabel.text = "\(date!.formatToSimpleDate())"
         dateLabel.numberOfLines = 0
         dateLabel.textColor = .white
         dateLabel.font = UIFont(name: "Avenir Next Condensed", size: 20)
