@@ -34,7 +34,7 @@ class HistoryView: UIView {
         layout.itemSize = CGSize(width: size, height: size)
         layout.minimumInteritemSpacing = CGFloat(spaceBetweenItems)
         layout.minimumLineSpacing = CGFloat(spaceBetweenRows)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: CGFloat(itemsMarginToBorders), bottom: 0, right: CGFloat(itemsMarginToBorders))
+        layout.sectionInset = UIEdgeInsets(top: 20, left: CGFloat(itemsMarginToBorders), bottom: 20, right: CGFloat(itemsMarginToBorders))
         collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -75,5 +75,6 @@ extension HistoryView: UICollectionViewDataSource {
         return cell
     }
     
+   
     
 }
