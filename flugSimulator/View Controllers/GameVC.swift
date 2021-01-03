@@ -173,6 +173,8 @@ class GameVC: UIViewController {
     
     private func showCounter() {
         isCounting = true
+        rightArrow.isEnabled = false
+        leftArrow.isEnabled = false
         let layerView = CounterView()
         view.addSubview(layerView)
         NSLayoutConstraint.activate([
@@ -187,6 +189,8 @@ class GameVC: UIViewController {
                 self?.isCounting = false
                 timer.invalidate()
                 layerView.removeFromSuperview()
+                self?.rightArrow.isEnabled = true
+                self?.leftArrow.isEnabled = true
                 self?.gameEngine()
             }
             layerView.counterLabel.text = String(counter)
@@ -335,21 +339,21 @@ class GameVC: UIViewController {
             self?.gameTimer.invalidate()
             self?.navigationController?.pushViewController(GameTabVC(), animated: true)
         })
+        alertVC.addAction(UIAlertAction(title: "Close", style: .default))
         present(alertVC, animated: true)
     }
     
     private func saveRecord() {
-        // VERIFY IF CURRENT RECORD IS BETTER THAN ANY OF THE SAVED ONES -> IF YES: SAVE
-        
         let record = Record(date: Date(),
                             speed: airplane.speed,
                             distance: distanceTravelled)
         
         Records().setRecord(record: record)
     }
-        //TODO: REFACTOR OTHER VIEWS OUT OF THIS VIEWCONTROLLER
+    
     //TODO: CHECK IF SPEED IS INDEED DECREASING
-    //TODO: CLOUD CANNOT DISAPPEAR FROM SCREEN AFTER ADDING RANDOM CONSTANT TO X COORDINATE
+    //TODO: REFACTOR OTHER VIEWS OUT OF THIS VIEWCONTROLLER
+    //TODO(optional): CLOUD CANNOT DISAPPEAR FROM SCREEN AFTER ADDING RANDOM CONSTANT TO X COORDINATE
     
 }
 

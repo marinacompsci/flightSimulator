@@ -11,6 +11,7 @@ class GameHistoryVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view = HistoryView(frame: view.frame)
         view.backgroundColor = .systemBackground
     }
     
@@ -18,10 +19,7 @@ class GameHistoryVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.topItem?.title = "Game Records"
-        navigationController?.navigationItem.hidesBackButton = true
         navigationController?.navigationBar.prefersLargeTitles = true
-        
-        view = HistoryView(frame: view.frame)
    }
 
    override func viewWillDisappear(_ animated: Bool) {

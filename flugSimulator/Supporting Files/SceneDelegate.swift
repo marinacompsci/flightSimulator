@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         let navController = UINavigationController(rootViewController: GameTabVC())
-        navController.navigationBar.isHidden = true
+        navController.navigationBar.isHidden = true        
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
     }
