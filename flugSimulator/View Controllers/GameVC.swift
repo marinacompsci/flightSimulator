@@ -263,6 +263,9 @@ class GameVC: UIViewController {
         if !cloud.touchedAirplane && cloudPosition.intersects(airplane.image.frame) {
             cloud.touchedAirplane = true
             cloud.reduceAirplaneSpeed(airplane: airplane)
+            print("Speed in km/s \(airplane.speed)")
+            print(distanceLabel.text!)
+            print(timeLabel.text!)
             UIView.animate(withDuration: 1) {
                 [weak self] in
                 self?.hitLabel.isHidden = false
@@ -344,6 +347,7 @@ class GameVC: UIViewController {
     }
     
     private func saveRecord() {
+        print("Speed in km/s \(airplane.speed)")
         let record = Record(date: Date(),
                             speed: airplane.speed,
                             distance: distanceTravelled)

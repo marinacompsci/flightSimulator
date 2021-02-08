@@ -71,7 +71,7 @@ extension HistoryView: UICollectionViewDataSource {
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HistoryCell.reuseId, for: indexPath) as! HistoryCell
-        cell.setup(date: record.date, distance: record.distance, speed: record.speed)
+        cell.setup(date: record.date, distance: record.distance, speed: record.speed * 3600)
         return cell
     }
     
